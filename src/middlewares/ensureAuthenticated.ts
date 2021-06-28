@@ -20,15 +20,11 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
     try{ 
         // validar se o token é válido
         const {sub} = verify(token, "085fe8d3be2e4a07beced91b9e3be865") as IPayload;
+
         // Recuperar informações do usuário
         request.user_id = sub;
         return next();
     }catch(err){
         return response.status(401).end();  
-    }
-
-    
-    
-    
-    
+    }    
 }
